@@ -1,15 +1,11 @@
-import os
 import time
 import html
 import asyncio
 import aiohttp
-import json
 import feedparser
-import requests
 import itertools
 
 from telegram.ext import CommandHandler
-from telegram import ParseMode
 
 from urllib.parse import quote as urlencode, urlsplit
 
@@ -18,7 +14,7 @@ from pyrogram.parser import html as pyrogram_html
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.handlers import MessageHandler, CallbackQueryHandler
 
-from bot import app, dispatcher, bot
+from bot import app, dispatcher, bot, LOGGER
 from bot.helper.ext_utils import custom_filters
 from bot.helper.telegram_helper.bot_commands import BotCommands
 from bot.helper.telegram_helper.filters import CustomFilters
@@ -259,15 +255,25 @@ class TorrentSearch:
         message = None
         response = None
         response_range = None
-        await self.message.delete()
+        try:
+            await self.message.delete()
+        except AttributeError as err:
+            LOGGER.error(str(err))
 
     async def previous(self, client, message):
         self.index -= 1
-        await self.update_message()
+        try:
+            await self.update_message()
+        except TypeError as err:
+            LOGGER.error(str(err))
+
 
     async def next(self, client, message):
         self.index += 1
-        await self.update_message()
+        try:
+            await self.update_message()
+        except TypeError as err:
+            LOGGER.error(str(err))
 
 RESULT_STR_1337 = (
     "🗂 <b>Name:</b> <code>{Name}</code>\n"

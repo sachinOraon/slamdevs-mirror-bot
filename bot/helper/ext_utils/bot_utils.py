@@ -111,8 +111,6 @@ def get_progress_bar_string(status):
     p_str = '█' * cFull
     if cPart >= 0:
         p_str += PROGRESS_INCOMPLETE[cPart]
-    p_str += ' ' * (PROGRESS_MAX_SIZE - cFull)
-    p_str = f"❮ {p_str} ❯"
     return p_str
 
 def get_readable_message():
@@ -135,7 +133,7 @@ def get_readable_message():
                 MirrorStatus.STATUS_EXTRACTING,
                 MirrorStatus.STATUS_SPLITTING,
             ]:
-                msg += f"\n<code>{get_progress_bar_string(download)} {download.progress()}</code>"
+                msg += f"\n💁🏻‍♂ <b><code>{download.progress()}</code></b> {get_progress_bar_string(download)}"
                 if download.status() == MirrorStatus.STATUS_CLONING:
                     msg += f"\n💥 <b>Cloned:</b> <code>{get_readable_file_size(download.processed_bytes())}</code>\n📀 <b>Total Size:</b> <code>{download.size()}</code>"
                 elif download.status() == MirrorStatus.STATUS_UPLOADING:
