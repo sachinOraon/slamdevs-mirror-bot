@@ -1,3 +1,9 @@
+```diff 
+- [ DEAD REPO AND NO MORE UPDATE ]
+Since the parent repos are dead:
+- https://github.com/SlamDevs/slam-mirrorbot
+- https://github.com/breakdowns/slam-mirrorbot
+```
 [![SlamDevs](https://telegra.ph/file/143032e96542e7534f073.jpg)](https://t.me/SlamDevs)
 
 # Slam Mirror Bot
